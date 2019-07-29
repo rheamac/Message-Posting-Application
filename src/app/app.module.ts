@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatExpansionModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule, 
     MatCardModule, 
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
