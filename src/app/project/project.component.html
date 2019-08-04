@@ -1,0 +1,89 @@
+
+<mat-card class="mat-background-color">
+    <mat-card-header style="    background-color: coral;color: brown;">
+       <mat-card-title>
+           <h2 style="align-content: center">Write Your own blog</h2>
+           <label style="align-content: center">Stay Annonymous or provide your Name </label>
+    </mat-card-title>
+     </mat-card-header>
+  <form class="mat-background-color mat-padding">
+    <mat-form-field>
+        <div>
+            <input name="user" [(ngModel)]="model.username" matInput placeholder="UserName" type="text"/>
+        </div>          
+    </mat-form-field>
+            <br/>
+    <mat-form-field>
+      <textarea name="messages" [(ngModel)]="model.messages" matInput placeholder="Write Blog"></textarea>
+    </mat-form-field>
+    <mat-card-actions>
+    <button class="mat-button-color" (click)="postMessage()" mat-button>Click Blog to be  Public</button>
+     </mat-card-actions>
+   </form>
+</mat-card>
+<mat-card class="mat-background-color">
+    <mat-accordion>
+        <mat-expansion-panel class="mat-background-color">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+               New Blogs
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div *ngIf = 'newMsg; else nomessage' class="row">
+            <div class="col-sm-2" style="display: inline-block;">User({{model.username}}):  </div>
+            <div class="col-sm-2" style="display: inline-block;">{{model.messages}}</div>  
+          </div>
+            <ng-template #nomessage>
+              <p>
+                No new Blogs
+              </p>
+            </ng-template>
+        </mat-expansion-panel>
+     </mat-accordion>
+     <mat-accordion>
+            <mat-expansion-panel  class="mat-background-color">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Old Blogs
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              
+                  <mat-list role="list">
+                      <mat-list-item role="listitem" *ngFor="let newMsg of newMessages">
+                        User({{newMsg.username}}): {{newMsg.messages}}
+                      </mat-list-item>
+                    </mat-list>
+             
+            </mat-expansion-panel>
+     </mat-accordion>
+</mat-card>
+<mat-card class="mat-background-color">
+  <h1>Get Blog Posted By a User</h1>
+  <mat-form-field class="mat-padding">
+      <input name="userName" [(ngModel)]="userName" matInput placeholder="Enter User Name to search" type="text"/>
+  </mat-form-field>
+  <mat-card-actions class="mat-padding">
+      <button class="mat-button-color" (click)="findUserMeaages()" mat-button>Find Blog by User</button>
+  </mat-card-actions>
+      <mat-accordion *ngIf="userName"  class="mat-background-color">
+          <mat-expansion-panel *ngIf= "'userMessages.length !=0';else ErrorBlock" class="mat-background-color">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                  {{userName}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngIf= "'userMessages.length !=0';else ErrorBlock">
+                <mat-list role="list">
+                    <mat-list-item role="listitem" *ngFor="let newMsg of userMessages">
+                      <ul>
+                        <li> {{newMsg.messages}}</li>
+                      </ul>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+            <ng-template #ErrorBlock>
+                  <p> The User does not exist. Please try Other Name.</p>
+            </ng-template>   
+</mat-card>
